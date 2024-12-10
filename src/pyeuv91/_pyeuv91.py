@@ -79,23 +79,24 @@ class Euv91:
 
             f = self._get_f(lya, hei, f107, f107avg)
             res = np.dot(self.bands_coeffs, f.T)
-            res_ener = res * 12400. * 1.602192e-12 / self.bands_dataset['center'].to_numpy().reshape(23, 1)
+            res_ener = res * 12400. * 1.602192e-12 / self.bands_dataset['center'].to_numpy().reshape(39, 1)
+            return res, res_ener
 
-            spectra = np.zeros((res_ener.shape[1], res_ener.shape[1], res_ener.shape[1], res_ener.shape[1], res_ener.shape[0]))
-
-            for i in range(res_ener.shape[1]):
-                spectra[i, i, i, i, :] = res_ener[:, i]
-
-            return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F10.7', 'F10.7AVG', 'band_center'), spectra),
-                                         'lband': ('band_number', self.bands_dataset['lband'].values),
-                                         'uband': ('band_number', self.bands_dataset['uband'].values),
-                                         'center': ('band_number', self.bands_dataset['center'].values)},
-                              coords={'band_center': self.bands_dataset['center'].values,
-                                      'Lya': lya,
-                                      'HeI': hei,
-                                      'F10.7': f107,
-                                      'F10.7AVG':  f107avg,
-                                      'band_number': np.arange(23)})
+            # spectra = np.zeros((res_ener.shape[1], res_ener.shape[1], res_ener.shape[1], res_ener.shape[1], res_ener.shape[0]))
+            #
+            # for i in range(res_ener.shape[1]):
+            #     spectra[i, i, i, i, :] = res_ener[:, i]
+            #
+            # return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F10.7', 'F10.7AVG', 'band_center'), spectra),
+            #                              'lband': ('band_number', self.bands_dataset['lband'].values),
+            #                              'uband': ('band_number', self.bands_dataset['uband'].values),
+            #                              'center': ('band_number', self.bands_dataset['center'].values)},
+            #                   coords={'band_center': self.bands_dataset['center'].values,
+            #                           'Lya': lya,
+            #                           'HeI': hei,
+            #                           'F10.7': f107,
+            #                           'F10.7AVG':  f107avg,
+            #                           'band_number': np.arange(23)})
 
     def get_spectral_lines(self, *, lya=None, hei=None, f107, f107avg):
         pass

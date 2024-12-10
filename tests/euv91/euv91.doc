@@ -1,0 +1,108 @@
+	8 files for the solar EUV91 model: 
+
+1) EUV91.DOC (this file),
+2) EUV91.TXT (text file which is the same as the JATP journal article), 
+3) EUV91COEF.TXT (table of coefficients for the model),
+4) EUV91.FOR (FORTRAN 77 code),
+5) EUV91.PRO (IDL code),
+6) EUV91INDEX1.DAT (data file: date, Lyman-alpha, He I 10,830, F10.7, 
+	F10.7 81-day mean values for 47001-68172).
+7) EUV91INDEX2.DAT (data file: date, Lyman-alpha, He I 10,830, F10.7, 
+	F10.7 81-day mean values for 68173-88366).
+8) EUV91INDEX3.DAT (data file: date, Lyman-alpha, He I 10,830, F10.7, 
+	F10.7 81-day mean values for 89001-90365).
+
+	The fortran version works identically with the IDL version 
+and has been tested on maximum, moderate, and minimum solar condition 
+cases (79050, 83138, 86190). The cases of no Lyman-alpha or He I data 
+(where F10.7 proxy is substituted, eg 74001) and the case of column change 
+for consecutive dates in the index file (78268 to 78269) has also been tested. 
+The fortran version generates some floating point underflow errors 
+on some occasions (ignore these) when it takes exponents of very small 
+numbers (used in the W scaling function). In these cases, the result 
+is still valid - i.e. the number "0" is obtained. If these are worrisome 
+to the user, the 2 lines of code using this exponentiation in SUBROUTINE 
+FLUX "do 20" loop, "W(j) = ..."  can be commented out since W(j) is 
+set to 1.0 by default. 
+
+	Single date fluxes or consecutive date fluxes can be generated. 
+For each day, a file using that day (in YYDDD format) in the filename is 
+created in the default directory. 
+
+	Best wishes for successful modeling using this empirical EUV! 
+Contact for questions:
+
+	W. Kent Tobiska
+	Space Sciences Laboratory
+	University of California
+	Berkeley, CA 94720
+	(415) 642-3645		(FAX) (415) 643-7629
+	(SPAN) UCBSP::KENT    or    (BITNET) kent@ssl.berkeley.edu
+
+Revision history:
+	1) The originally revised SERF2 model was completed on June 6, 1990.
+	   The model as it exists in the JATP preprint reflects this 
+	   version of the model.
+	2) Three minor revisions were incorporated into the model on 
+	   April 18, 1991. They are: a) inclusion of the June 20, 1989 LASP 
+	   rocket flight data into the model as released by Tom Woods 
+	   (private communication); b) elimination of the use of the "W(i)"
+	   scaling function and replacement of it by creating a missing 
+	   daily value of a proxy with the linear relationship to another 
+	   similar solar source region proxy; and c) removal of the 
+	   "discontinuity" in chromospheric model values on day 281, 
+	   1981 (October 8, 1981) which corresponds to the date that two 
+	   proxies (Lyman-alpha and He I 10830) were jointly used in the 
+	   model (prior to this date, there was a scaling of He I with the 
+	   "W" function). The net effect of these revisions is to change 
+	   the coefficients in the table EUV91COEF.TXT. The model was 
+	   slightly improved with the elimination of the day 81281 
+	   "discontinuity" and slightly different (generally higher) model 
+	   flux values from the June 1990 version. The model as it exists 
+	   in the JATP published article reflects this version of the model.
+	3) Revisions to the EUV91.FOR code for use on PCs include:
+		a) all subroutine and variable names 6 characters maximum
+		b) machine-dependent default variable declarations used
+		c) "if" statements no longer test real-valued equalities 
+		d) "do" loops now use labeled "continue" and not "end do"
+		e) once the number of coefficients totals 8 from a line read
+		   in, the loop is exited in SUBROUTINE RDDATA to avoid 
+		   any trailing blank problems. 
+
+From:	ZODIAC::TOBISKA      18-DEC-1991 15:19:39.14
+To:	9555::JMCKINNON
+CC:	
+Subj:	
+
+Dear Colleague,
+
+	The next E-mail message contains the updated table of 
+model coefficients for the empirical solar EUV model, EUV91, which 
+you have. If you need a new Fortran 77 or IDL version of the model, 
+please let me know.
+
+	These coefficients have been slightly revised from the 
+published version in JATP (1991). Particularly, the Lyman-beta and 
+C III lines have higher absolute intensities than the previous model 
+version and will affect E-region ionization modeling. These new model 
+results were presented at the fall '91 AGU meeting and a paper summary 
+of those results are available if you are interested.
+
+	The FUV irradiances in the model are being developed and 
+some preliminary results were shown at AGU. However, these values 
+are still being studied for consistency with published data and 
+are not yet available for release. Over the next year I hope to 
+have several of the important lines and intervals available (eg 
+1304) and, additionally, hope to have made improvements in the 
+estimation of the soft x-rays based on some new datasets now 
+becoming available. 
+
+	Finally, I will be leaving the University of California at 
+Berkeley on December 31, 1991 and will be going to JPL to work 
+with the Galileo UVS science team on a permanent basis. My mail 
+and e-mail addresses will both change. However, e-mail which 
+is sent to ZODIAC::TOBISKA will be forwarded to me. 
+
+	Seasons greetings!
+
+	Kent Tobiska

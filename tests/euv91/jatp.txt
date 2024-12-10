@@ -1,0 +1,728 @@
+		XXVIII COSPAR, The Hague, 1990, Paper No. I.2-P1 
+			submitted to J. Atmos. Terr. Phys.
+
+		REVISED SOLAR EXTREME ULTRAVIOLET FLUX MODEL
+
+			W. Kent Tobiska
+			Space Sciences Laboratory, 
+			University of California, 
+			Berkeley, CA 94720, USA
+			(415) 642-3645
+
+				ABSTRACT
+
+	An extended and revised solar extreme ultraviolet irradiance 
+model for aeronomical use during the 1990's has been developed. The extensions 
+significantly increase the application of the SERF2 solar EUV model beyond 
+the October 1981 -- April 1989 timeframe. The model can now be used from 
+1947 to the present for coronal EUV full-disk irradiances and from 1976 to 
+the present for chromospheric EUV full-disk irradiances. Substantial revisions 
+to SERF2 were made which significantly improve the ability of the model to 
+reproduce observed 27-day and solar cycle EUV temporal variations. A multiple 
+linear regression method is used to obtain coefficients for modeled EUV 
+photon flux. This method allows for the inclusion of new rocket and satellite 
+datasets into the model as they become available. The solar H Lyman-alpha 
+and He I 10,830 A equivalent width measurements are used as the independent 
+model parameters for the chromospheric irradiances while the 10.7-cm 
+radio emission daily and 81-day running mean values are the independent 
+parameters for the coronal and transition region irradiances. The results of 
+the model give full-disk photon fluxes at 1 AU for 39 EUV wavelength groups 
+and discrete lines between 1.8 and 105.0 nm for a given date. The OSO, AEROS, 
+AE satellite datasets and six rocket datasets used in the model development 
+are summarized, the modeling technique is described in detail, the model 
+formulation is presented, and the comparisons of the model to the datasets are 
+discussed. 
+
+				INTRODUCTION
+
+	Solar extreme ultraviolet (EUV) radiation which is emitted between the 
+X-rays and the far ultraviolet is a combination of both line and continuum 
+features. Its importance results from this spectrum's relationship with   
+planetary thermospheres which are heated by EUV radiation through 
+photoabsorption processes. For example, the Earth's upper atmosphere is 
+significantly perturbed by this irradiance which is absorbed by the major 
+neutral constituents of O, O2, and N2. 
+
+	Schmidtke [1] outlined four aeronomically important solar spectral 
+ranges. The 125.0-180.0 nm range heats the lower thermosphere through 
+the production of O by O2 absorption in the Schumann-Runge continuum; 
+the H Lyman-alpha line at 121.6 nm is a major contributor of the D-region 
+ionosphere through the ionization of NO; the 16.0-103.0 nm range is the 
+primary heat source of the thermosphere through major neutral constituent 
+photoabsorption and creates the ionosphere E- and F-regions; and the 0.1-2.0 nm 
+range contributes to the ionization of the D-region, particularly during active 
+solar conditions. For a detailed understanding of the temporal variations 
+of the thermosphere over solar rotation and solar cycle time scales, the 
+temporal variations of the 2 to 103 nm range are of particular interest. 
+
+	The EUV irradiances between 1.8 nm and H Lyman-alpha have been measured 
+by numerous sounding rocket and satellite instruments. These measurements 
+have been reviewed by Timothy [2], Schmidtke [1,3], and Lean [4]. Further 
+rocket measurements have been described by Carlson et al. [5], Ogawa and 
+Judge [6], Ogawa et al. [7], Woods and Rottman [8], and summarized by 
+Feng et al. [9]. In essence, these papers describe over a dozen and a 
+half sounding rocket measurements and measurements by the OSO, AEROS, and AE 
+series satellites using both spectrophotometric and broadband ionization cell 
+techniques during the 1960's through the 1980's. 
+
+	These measurements have provided a wealth of information on the 
+relative temporal variation of many line and continuum emission features 
+in this spectral range. Important periodicities were discovered in the 
+long-term solar cycle EUV variation and the ranges of absolute intensities 
+within which these features vary were established. As such, these measurements 
+laid the groundwork for solar EUV models which are used when measurements are 
+unavailable. 
+
+	Prior to measurements above the atmosphere, the first empirical EUV 
+model can be found in the 1937 suggestion of Saha [10] that an ``ultraviolet 
+excess factor'' be accounted for by scaling the EUV spectral region in a solar 
+black body radiating at 6500 K by 1E6.  Following a successful rocket 
+observation of a broad spectrum in the EUV during 1963, Hinteregger et al. 
+[11] tabulated an EUV flux standard for quiet solar conditions. This was 
+followed by the compilation by Donnelly and Pope [12] of an EUV model 
+spectrum for moderate solar activity which summarized the subsequent 
+successful observations. Hinteregger [13] reviewed the advances in 
+measuring EUV irradiances following the Atmospheric Explorer-C (AE-C) mission 
+in the mid-1970's and Heroux and Hinteregger [14] released a revised reference 
+spectrum for moderate solar activity based upon a detailed study of a 1974 
+rocket flight. Roble and Schmidtke [15] described a variety of typical EUV flux 
+examples applied to aeronomical calculations for different solar conditions. 
+
+	However, the most complete empirical models were first developed 
+by Hinteregger et al. [16] following the completion of the AE-E mission. 
+Two empirical models emerged from this work including the EUV class model and 
+the two variable 10.7 cm radio flux, F10.7, association formula. The EUV 
+class model was limited to the timeframe of the AE-E mission (July 1977 
+through December 1980) and used the chromospheric H Lyman-beta flux to 
+estimate other chromospheric emission intensities and used the Fe XVI 
+(33.5 nm) coronal line to estimate other coronal and transition region 
+(hereafter referred to as coronal) emission intensities. The association 
+formula used both F10.7 daily and 81-day mean values in a linear 
+correlation with AE-E EUV flux values in order to estimate EUV irradiances 
+outside that timeframe. These combined models were later designated SERF1 by 
+the Solar Electromagnetic Radiation Flux Study group which worked under the 
+auspices of the World Ionosphere - Thermosphere Study (WITS) organized by 
+the Scientific Committee on Solar-Terrestrial Physics (SCOSTEP). 
+
+	Following the SERF1 model, Tobiska [17] developed a two index EUV 
+flux model based on the Hinteregger et al. [16] EUV class model concept 
+and the AE-E dataset. This model used H Lyman-alpha to estimate the 
+chromospheric irradiances and 0.1-0.8 nm X-rays to estimate the coronal 
+irradiances. Tobiska and Barth [18] improved this model by replacing the 
+0.1-0.8 X-ray index with the F10.7 daily values and by utilizing additional, 
+mostly broadband, rocket measurements of the EUV to lower the uncertainty 
+on the absolute integrated irradiance values. This model was subsequently 
+designated SERF2 and covered the timeframe between October 1981 and April 
+1989. Tobiska [19] detailed the SERF2 model development. 
+
+	SERF1 and SERF2 were compared by Lean [20] over timescales of the 
+27-day solar rotation and the 11-year solar cycle. Significant differences 
+were found between the two models and between the models and the datasets upon 
+which each were based. The differences appeared in the estimation of absolute 
+intensities, the magnitude of peak-to-valley variation of irradiance due to 
+solar rotation, and the maximum to minimum flux values over the 11-year solar 
+cycle. The conclusion of that study indicated neither models nor measurements 
+yet provided a consistent picture of long-term variability in the EUV portion 
+of the sun's spectrum. 
+
+	The revisions and extension of the SERF2 model in the present study 
+are part of the continuing effort to improve empirical solar EUV modeled 
+irradiances such that the uncertainties are better known in both models and 
+datasets and such that the models become a useful tool for estimating solar 
+EUV irradiance for aeronomical use. 
+
+			EUV MODEL DEVELOPMENT
+
+SERF2 IMPROVEMENTS
+
+	SERF2 represented an advance for empirical solar EUV irradiance 
+modeling based upon 1) the extension of the EUV class method to time periods 
+outside of the AE-E dataset and 2) the high correlations of the Lyman-alpha and 
+F10.7 proxies with the AE-E chromospheric and coronal irradiances, 
+respectively. However, a detailed analysis of the model identified the 
+following inconsistencies and limitations. Two of the inconsistencies are 
+apparent when the model is directly compared to datasets and one subtle 
+physical inconsistency was discovered. A significant limitation of SERF2 
+resulted from its application only to the 1981-1989 timeframe. 
+
+	Tobiska [19] and Lean [20] both indicated that several of the SERF2 
+chromospheric lines, including the He I 58.4 nm, He II 30.4 nm, and the 
+H Lyman-beta 102.6 nm features, did not show large enough relative amplitude 
+variation over 27-day solar rotation timescales when compared to OSO 4, OSO 6, 
+and AE-E datasets. In addition, there was a concern that the absolute 
+magnitudes of these particular lines were too low and that the ratios of solar 
+cycle maximum to minimum values were too low. It was later determined that the 
+method of weighting the slope coefficient rather than the intercept in the 
+SERF2 linear equations was the most probable cause of this inconsistency. This 
+subsequently raised concerns about the overall usefulness of this weighting 
+method. 
+
+	A second concern raised about the SERF2 model was its use of the daily 
+F10.7 value, but not the 81-day mean value, combined with an H Lyman-alpha 
+proxy in estimating the coronal irradiances. The F10.7 81-day mean value 
+used by SERF1 has been recognized as a way of improving the F10.7 and EUV 
+emission correlations, particularly for coronal emissions.
+
+	A third concern about the model was pointed out by Link [private 
+communication, 1990] who demonstrated that SERF2 did not reproduce physically 
+consistent H Lyman and C I continua. The 5.0 nm wavelength interval boundaries 
+in the SERF2 modeled continuum flux were not consistent in magnitude with the 
+neighboring continuum interval. 
+
+	An open question which was addressed by SERF2 and which still remains 
+to be resolved is the debate on whether or not the 5.0-57.5 nm total integrated 
+flux for low solar activity should be higher than the irradiances measured 
+by rockets in the 1970's. Richards and Torr [21], Ogawa and Judge [6], Link 
+et al. [22], Winningham et al. [23], and Tobiska [24] indicate that the 
+estimates of some or all of the total flux in that wavelength range 
+should be higher during low solar activity by up to a factor of 2. SERF2 
+produced total integrated flux of about 1.6 greater than the rocket data. The 
+present model produces total 5.0-57.5 nm integrated flux values which match 
+the rocket data. However, in the subrange of 5.0-25.0 nm, the model 
+consistently produces higher flux for all levels of solar activity than 
+the AE-E data. This result supports the conclusions of Richards and Torr [21] 
+who determined that a doubling of the solar EUV below 25.0 nm was needed to 
+explain measured photoelectron fluxes. This issue will be addressed later in 
+the evaluation of this new model. 
+
+DATASETS USED IN THE MODEL DEVELOPMENT
+
+	Six satellite EUV datasets, including OSO 1 (28.4 and 30.4 nm), OSO 3 
+(25.6, 28.4, and 30.4 nm), OSO 4 (30.4 nm), OSO 6 (30.4 and 58.4 nm), AEROS A 
+(28.4, 30.4, and 58.4 nm), and AE-E (14.0-105.0 nm), were used in the 
+development of this model. Each dataset was weighted for instrument 
+uncertainty. These EUV data were combined with data from six rocket flights, 
+also weighted, to obtain the irradiances at EUV wavelengths for correlation 
+with the model proxies. The six rockets included three ionization cell or 
+silicon photodiode instruments flown by the University of Southern California 
+and described by Carlson et al. [5], Ogawa and Judge [6], and Ogawa 
+et al. [7], two spectrographs flown by the University of Colorado described by 
+Woods and Rottman [8] and Woods [private communication, 1991], and one 
+spectrometer flown by the Air Force Geophysics Laboratory described by 
+Van Tassel et al. [25]. Table 1 lists the characteristics of these datasets 
+by satellite, wavelength coverage, year(s) of observations, literature 
+reference, and uses in model development. 
+
+	The model proxies, which are independent datasets used to establish a 
+correlation between either chromospheric or coronal irradiances or to extend 
+the estimate of these irradiances outside the original EUV data timeframes, 
+include the Solar Mesosphere Explorer (SME) Lyman-alpha described by Barth et 
+al. [26], the AE-E Lyman-alpha described by Hinteregger et al. [16], the 
+OSO 4 Lyman-alpha described by Timothy and Timothy [27], the OSO 6 Lyman-alpha 
+described by Woodgate et al. [28], the He I 10,830 A equivalent width 
+(EW) described by Harvey [29], and the Ottawa F10.7 provided by the World 
+Data Center A. 
+
+MODELING TECHNIQUE AND FORMULATION
+
+	The revision and extension of the SERF2 model was conducted using 
+a multiple linear regression technique which is different from the simple 
+least squares fitting routine used to develop the original SERF2 model. The 
+advantage of using a multiple linear regression algorithm in this new model is 
+that several datasets from independent sources may be used to perform the 
+new correlations. With the number of independent terms greater than 1 for 
+each of the chromospheric and coronal regressions, the new model 1) is 
+now capable of including new proxies to extend the model backward or 
+forward in time (as has been done with the He I 10,830 A EW data) or 2) is 
+now able to take advantage of higher correlations obtained with mean value 
+data (as has been done with the 81-day mean of the F10.7). Additionally, 
+future independent datasets which prove to have high correlations with 
+solar chromospheric or coronal irradiances can now be included. The 
+weighting of the datasets is easily accomplished using the multiple linear 
+regression algorithm. 
+
+	In general, a chromospheric or coronal emission intensity, I, at a 
+wavelength lambda may be modeled as a time-varying quantity at 1 AU as 
+
+	I(lambda,t) = 
+	  a0(lambda) + a1(lambda)F1(t) + a2(lambda)F2(t) + . . . +
+                       an(lambda)Fn(t)                               (1)
+
+in units of photons cm{-2} s{-1} with n independent terms according to 
+the multiple linear regression technique described by Bevington [30]. 
+The ai(lambda) coefficients are derived in the multiple linear regression 
+and Fn(t) are the independent datasets (n = 4 for the model) which are the 
+EUV proxies as used in this study. This relationship is based on the 
+assumption that the independent terms vary linearly with the EUV flux 
+with which they are being correlated. The assumption generally holds true 
+for emissions which are created at the same temperature levels in the 
+solar atmosphere. 
+
+	This equation is modified to reproduce modeled flux during periods 
+when one of the independent terms, or proxies, may not be available. A 
+good example of this is between the end of AE-E in December 1980 and the start 
+of SME in October 1981. During these 9 months, there were no Lyman-alpha data 
+measured although He I 10,830 A EW measurements do exist. Therefore, an 
+empirical function was developed to allow the production of the modeled flux 
+even if one independent term is missing. This function has the dimensionless 
+form
+
+	wi(lambda,t) = 1 + bi(lambda) e^{-Si(t)}                     (2)
+
+	W(lambda,t) = product{i=1}^{4}wi(lambda,t)                   (3)
+
+where the wi(lambda,t) scaling term corresponds to the average ratio by 
+which the Fj(t) independent term is multiplied in order to model the flux 
+for the days which have missing data in the ith independent term. Si(t) 
+is a step function which has a large value (<<1) for dates on which data 
+exist for the ith independent term and a value of 0 for dates on which data 
+do not exist for the ith independent term. In the exponent, -Si(t) causes 
+bi(lambda) to be multiplied by 0 or 1 for data or no data, respectively, 
+in the ith independent term. If the ith independent term data exist for a 
+given date, the value of wi(lambda,t) reduces to unity. In practice, 
+an equally valid alternative to using the weighting function is to set 
+wi(lambda,t) to 1 and scale an existing proxy from the same solar 
+temperature region to the value of the missing proxy on a given date. 
+
+	Equation (1) can now be rewritten as
+
+	Phi(lambda,t) = a0(lambda) + sum{i=1}^{4} ai(lambda)Fi(t)    (4)
+
+	I(lambda,t) = Phi(lambda,t) W(lambda,t)                      (5)
+
+again in units of photon flux.
+
+	In the model, there are presently four independent datasets used 
+where F1(t) is the SME Lyman-alpha, F2(t) is the He I 10,830 A EW scaled 
+to Lyman-alpha values by equation (6) below, F3(t) is the daily F10.7, and 
+F4(t) is the 81-day running mean value of F10.7. If the modeled flux is 
+chromospheric in origin, then the coefficients of a3(lambda) and 
+a4(lambda) are set to 0 or if the flux is coronal in origin, then the 
+coefficients of a1(lambda) and a2(lambda) are set to 0. For wavelength 
+intervals in which both chromospheric and coronal irradiances are modeled, 
+each interval is calculated separately according to chromospheric or coronal 
+classification with the final values then summed in order to produce a total 
+flux for that particular wavelength interval. 
+
+	Table 2 lists coefficients used in the model by 39 wavelength 
+intervals or discrete lines and includes the solar source region (key) 
+for each EUV wavelength, the value of a0(lambda) in equation (4), the 
+values of ai(lambda) for i = 1,2,3,4 in equation (4), and the values of 
+bi(lambda) for i = 1,2,3,4 in equation (2). These intervals and lines are 
+identical to the divisions made in previous EUV investigations by Torr et 
+al. [31], Torr and Torr [32], and Tobiska and Barth [18].
+
+	Prior to performing the multiple linear regressions between the proxy 
+datasets and the EUV irradiances, the proxy datasets are first searched 
+for missing data followed by the insertion of a cubic spline interpolated 
+value at the missing days. In practice, the F10.7 has very few missing data 
+points with exceptions in solar cycles 18 and 19. The He I 10,830 A EW 
+dataset contains a significant number of missing data points and the cubic 
+spline is extensively used here. For ease of use in the model, the He I 10,830 
+A EW data, originally in units of milliA, are converted to an equivalent 
+SME Lyman-alpha flux by the relationship
+
+	F{Lyman-alpha} = F{He I 10,830 EW} 3.7784687E9 + 8.4031723E10 (6)
+
+in units of photons cm^{-2} s^{-1}. Equation (6) is used to create the F2(t) 
+dataset mentioned above. The SME Lyman-alpha dataset contains values for 
+all dates except one or two. The OSO 4, OSO 6, and AEROS A Lyman-alpha data 
+contain no missing datapoints as a result of the digitizing method used 
+to create the datasets from the published figures and, finally, the AE-E 
+Lyman-alpha dataset contains a substantial number of missing days where 
+cubic splined data values are used. The datasets of EUV irradiance, which 
+contain missing data, are not splined. The correlations are then performed 
+between the proxy data, which is splined in the above cases, and the 
+existing, measured, unsplined EUV irradiances. 
+
+	While calculating the correlations between the independent data and 
+a particular EUV wavelength interval or discrete line, several constraints 
+were imposed upon the calculations. First, all EUV datasets were weighted with 
+the uncertainties published by the experimenters although, in most cases, 
+the uncertainties in the data were increased based either upon discussions with 
+the experimenters or upon a comparison with other datasets when more than two 
+sets of measurements were available for similar levels of solar activity. 
+
+	Next, below 30.0 nm a first-order approximation to a rocket spectrum 
+was created for each of the 3 USC datasets [5, 6, 7]. This was accomplished 
+by scaling the August 1979 AFGL rocket flight spectrum described by Van 
+Tassel et al. [25] by the appropriate ratio so that the total spectrum 
+between 5.0-57.5 nm equaled the total integrated flux value obtained by the 
+USC experimenters. The uncertainty introduced by this approximation is 
+certainly large even though the AFGL flight occurred under similar levels of 
+solar activity. However, the resulting estimated flux values in this 
+wavelength region for the USC rocket flights were almost always within 
++-50% of the model values which were derived only from a correlation with 
+the AE-E dataset. Often the model versus estimated flux differences were within 
++-20%. These estimated rocket values were then used to scale the absolute 
+magnitude of the AE-E data such that the model would best fit the estimated 
+USC flux within a +-55% uncertainty range but still fall within the AE-E 
+uncertainty range of +-35%. The exception using this technique below 30.0 nm 
+was the calculation of the 25.6 nm irradiance which resulted in model 
+values 65% higher than the AE-E values. 
+
+	Between 1.8-5.0 nm, only the AFGL data as provided by the NSSDC 
+were used in the correlation. It is possible that model fluxes in this 
+range should be scaled upwards by as much as 50% for a first order 
+approximation. Supporting this scaling is recent work by Barth et al. [33] 
+and Siskind et al. [34] who, in analyzing NO in the lower thermosphere, 
+suggest that the NSSDC values between 1.8-5.0 nm be raised in order to 
+account for photoelectron flux needed to enhance the ionization of N2. 
+
+	Above 30.0 nm the same scaling technique which modifies the absolute 
+value of the AE-E data was used such that the model matched the least 
+uncertain of the measured intervals and lines of the November 10, 1988 and 
+June 20, 1989 LASP rockets. In some cases described below, this technique was 
+modified with additional constraints. All but a few of the model values were 
+within +-10-50% of the AE-E flux for a given wavelength. The cases in which 
+the comparisons were worse than this are those wavelength ranges which were 
+forced to an absolute level by the continuum emission constraint described 
+in the next paragraph. Above 30.0 nm the estimated USC data were not used 
+in the determination of the absolute magnitude. However, in most cases, 
+there were good to moderate agreements between the estimated USC data and 
+the model where the scatter of differences ranged between +-5-75%. Except 
+for the He II 30.4 nm emission, for which the AE-E dataset was given the 
+most weight in order to best represent all the data, the USC estimates 
+and model differences were attributable to greater weights given to the 
+LASP narrowband spectrograph measurements or continuum emission constraints. 
+The LASP rockets' measurement uncertainties varied by wavelength (see Table 
+1) and, for modeling purposes, the values given with those datasets were 
+doubled to provide +-2 sigma uncertainties. 
+
+	An important empirical constraint related to the continuum emission 
+was added to the model. For the three continua of He I (45.3-50.4 nm), H Lyman 
+(70.0-91.2 nm), and C I (91.3-105.0 nm) an empirical limitation was imposed in 
+order to make adjacent longer wavelength interval boundaries produce an 
+irradiance consistent with an increase relative to its neighbor in the 
+preceeding, shorter wavelength interval. The estimated value of the continuum 
+flux in a wavelength interval for a given date was derived by scaling the 
+reference continuum given by Hinteregger et al. [16] in the SC21REFW 
+spectrum by the ratio of Lyman-alpha and He I 10,830 A EW on that date 
+above their solar minimum values. This scaling philosophy is based upon 
+the assumption that the continua irradiances in all three cases originate 
+in the solar chromosphere. The modeled flux for wavelength intervals which 
+include those continua were forced to match the expected scaled continua 
+without regard for most discrete lines. In half of the cases, the model 
+continua values were within +-20% or less of the rocket or AE-E data. The 
+exceptions tended to be some of emissions measured by the 1989 LASP rocket 
+and AE-E, both of which had higher emission intensities by up to a factor 
+of 2 than those derived from the model. 
+
+	The model is constructed to take advantage of potentially new 
+independent proxies such as the 530.3 nm coronal green line of Fe XIV. 
+Possible new indices for chromospheric emission include the Mg II core-to-wing 
+ratio R(Mg II cw) described by Heath and Schlesinger [35] and the Ca II K 1 
+A index described by White et al. [36]. The Fe XIV may complement the F10.7 
+as a purely coronal index depending upon the results of further research. 
+The Mg II and Ca II K index are both substitutes for Lyman-alpha when the 
+latter is unavailable. Tobiska and Bouwer [37] give a relationship between 
+Mg II and Lyman-alpha 
+
+	F{Lyman-alpha} = R(Mg II cw) 1.785E12 - 1.515E12              (7)
+
+in photons cm^{-2} s^{-1}. White et al. [36] give a relationship between Ca 
+II K and Lyman-alpha 
+
+	F{Lyman-alpha} = K{index} 108 - 6.92                          (8)
+
+in units of 1E11 photons cm^{-2} s^{-1}.
+
+COMPARISON OF MODEL AND DATASETS
+
+	The independent datasets upon which this model is constructed are 
+shown in Figure 1. All proxies are corrected to 1 AU. The (a) SME Lyman-alpha 
+is described by Barth et al. [26], the (b) He I 10,830 A EW is described 
+by Harvey [29], the (c) Ottawa F10.7 daily flux is available from the 
+World Data Center A and is described originally by Covington [38], and 
+the (d) 81-day running mean value of F10.7 is from the same sources as (c). 
+The timeframe in all four panels is from January 1, 1962 through December 31, 
+1989. Units in the time axis are in days. The maxima of solar cycles 20 and 21 
+can be seen in these panels as well as the rise of cycle 22. In addition, 
+the 27-day solar rotational modulations are observed. 
+
+	Selected model and data discrete line and interval irradiances are 
+shown in the time series Figures 2 and 3. These are some of the lines and 
+intervals which contribute the greatest heating to the Earth's thermosphere 
+as demonstrated by Roble [39]. Figure 2 shows the 15-19.9 nm coronal emission, 
+the Fe XV 28.4 nm coronal line, the He II 30.4 nm chromospheric line, the 
+30.3-35 nm coronal emission (excluding Si XI at 30.3 nm), the He I 58.4 nm 
+chromospheric line, and the H Lyman-beta 102.6 nm chromospheric line. In 
+each of the panels, the data are shown as solid lines and the model as dotted 
+lines. USC estimated rocket flight data are shown as open diamonds while the 
+LASP rocket data are shown as boxes. Each panel shows the time series in 
+days, with biennial intervals labeled, from January 1, 1962 through December 
+31, 1989 where the flux is in units of photons cm^{-2} s^{-1}. The solar 
+source regions and wavelength line or interval in A is shown in each panel. 
+
+	In Figure 2, the coronal irradiances are modeled for the entire 
+period from 1962 through 1989 since the F10.7 exists for the entire period. 
+The chromospheric irradiances in this figure have limited representation in 
+1968, 1969, and late 1974-early 1976 but have daily values starting in late 
+1976. OSO 4 and OSO 6 measured Lyman-alpha in 1968 and 1969, respectively, 
+while He I 10,830 A EW measurements exist beginning in late 1974. 
+
+	In Figure 3, each panel shows the same emission ranges or lines as 
+in Figure 2. The AE-E data is again shown as a solid line and the model as 
+a dotted line for 500 days beginning August 10, 1977. This figure compares 
+data with the model during the rise of solar cycle 21. One notes that the 
+relative magnitude of variation of the model compared to the data for both 
+27-day solar rotational and 11-year solar cycle timeframes are similar. 
+Additionally, the coefficients of linear correlation with the independent term 
+(F{1-4}) are shown in each panel.
+
+	Three representative model spectra are shown in Figure 4 for low, 
+moderate, and high solar activity. The first panel in Figure 4 shows the 
+modeled spectrum for November 26, 1985 (85330 in the year-day format) 
+during low solar activity when the F10.7 = 70. The modeled spectrum for 
+November 10, 1988 (88315) is shown in the second panel for the time of the 
+LASP rocket flight when F10.7 = 148 during moderate activity. The third 
+panel shows the spectrum for August 10, 1982 (82222) during the USC rocket 
+flight when F10.7 = 210 during high solar activity. The range of flux covers 
+five orders of magnitude; discrete lines as well as continua are apparent. 
+The model spectra was created by using the SC21REFW reference spectrum, 
+scaling it's data to the modeled flux values, and superimposing the modeled 
+discrete lines onto the spectrum. The total integrated flux between 50-575 
+A is also shown in each panel. 
+
+	Finally, Figure 5 is mostly based upon Ogawa et al. [7] and shows the 
+total integrated flux between 5.0-57.5 nm for eighteen rocket flights 
+including the three USC experiments. In this figure, the total integrated flux 
+is compared to F10.7 on the date of the rocket flight. Superimposed upon the 
+figure are the results of several model runs for a variety of solar activity 
+conditions. The modeled datapoints are shown as filled circles without error 
+bars. During low, moderate, and high solar conditions, the model reproduces 
+very well the observed integrated solar flux. The dates of the models runs are 
+79050 (1979, day 50), 79226, 79314, 82222, 83228, 85330, 88298, and 88315 
+which correspond to high activity days, low activity days, or dates of rocket 
+flights. 
+
+	As noted earlier, there has been discussion in the literature regarding 
+the magnitude of the integrated flux values during low solar activity when 
+F10.7 is in the low 70's. One argument suggests that low solar activity total 
+integrated flux should be higher by a factor of 1.5-2 based upon 1) 
+calculations of the solar flux needed to produce measured photoelectron fluxes 
+and 2) the extrapolation of a line through the low uncertainty USC 
+measurements. The other argument notes that 1) three separate rocket 
+flights measured consistent flux levels for low solar activity and 2) the 
+5.0-57.5 nm range contains a substantial amount of chromospheric irradiance 
+which should vary non-linearly with F10.7 by analogy to the Lyman-alpha, 
+Mg II, and He I 10,830 comparisons with F10.7. Since the model uses 
+two of these three chromospheric indices, it is not suprising that the 
+model 1) shows a non-linear relationship with F10.7 during low solar activity, 
+2) does not follow a direct extrapolation from moderate levels of solar 
+activity, and 3) reproduces flux consistent with rocket data. The three low 
+activity rocket datasets were not used directly in the model derivation but 
+did indirectly affect the model to the extent that they were used in 
+calibrating the AE-E EUV flux. However, it is possible that only the flux 
+levels in wavelengths shortward of 25.0 nm need to be increased over the AE-E 
+values while the irradiance above 25.0 nm does not need to be increased 
+substantially. This combination allows increased photoelectron production yet 
+maintains a non-linear relationship with F10.7 during low solar activity. The 
+controversy remains an open question and demonstrates the importance of 
+obtaining well calibrated solar EUV measurements during the next solar minimum 
+in the mid-1990's. 
+
+				CONCLUSIONS
+
+	The present solar EUV irradiance model was developed as an extension 
+and revision of the SERF2 model. The 39 wavelength intervals or discrete lines 
+between 1.8--105.0 nm are modeled as either chromospheric or coronal 
+irradiances which vary over time with solar rotational or longer-term solar 
+dynamical periodicities including the 11-year solar cycle. The modeled flux is 
+representative of an average full-disk EUV irradiance on a given date at 
+1 AU at the top of the atmosphere. The model was constructed particularly 
+for use in aeronomical calculations. The daily modeled spectrum can be used 
+in a variety of formats, including broadband integrated flux in the 5.0-57.5 
+nm range, as 39 wavelength intervals and lines, or at a resolution of 1-2 A 
+with divisions identical to those of the SC21REFW reference spectrum. 
+
+	The modeling technique utilizes two independent datasets for each of 
+the chromospheric and coronal irradiances within a multiple linear regression 
+algorithm which allows for the weighting of each EUV dataset according to 
+instrumental uncertainty. Uncertainties were utilized in the derivation of the 
+model. An empirical function incorporated into the model allows for the 
+calculation of an irradiance even if only one independent term exists. 
+
+	The present work is an improvement over SERF1 in its 1) ability to 
+distinguish between chromospheric and coronal irradiance variations outside 
+the AE-E timeframe and 2) self-consistency with the datasets which were 
+used to derive the model. Improvements over SERF2 include 1) the ability 
+to reproduce the same relative magnitude of variation over 27-day solar 
+rotational and 11-year solar cycle time periods as the datasets for all 
+wavelengths, 2) the ability to incorporate new datasets and/or independent 
+proxies as they become available, and 3) the extension of the model beyond 
+the SME Lyman-alpha timeframe. The model can be extended even further in time 
+(forward and possibly backward for the chromospheric irradiances) as 
+ground-based and/or satellite measurements of the proxies continue to be made. 
+
+	Future improvements in the modeling of solar EUV irradiance will come 
+with increased satellite and rocket measurements in this part of the spectrum 
+at a variety of levels of solar activity. New measurements of the short 
+wavelength solar EUV during solar minimum conditions in the mid-1990's, 
+particularly of the integrated flux and the discrete lines down to 1.8 nm, 
+would certainly contribute to resolving open questions regarding existing 
+models and data. Narrowing the model uncertainty may also be possible through 
+the use of improved or new independent proxies. Finally, short-term solar EUV 
+flux prediction may soon be possible as the evolution and decay of solar 
+active regions are better understood and this information is incorporated into 
+the solar EUV models. 
+
+				ACKNOWLEDGEMENTS
+
+	This research was supported by the US Army Research Office (USARO) and 
+the National Science Foundation (NSF) through the following grants: USARO 
+DAAL03-89-K-0057 and NSF ATM-8900145. Several datasets were graciously 
+provided. The He I 10,830 A EW data was provided by J. Harvey. These 
+NSO/Kitt Peak data are produced cooperatively by NSF/NOAO, NASA/GSFC and 
+NOAA/SEL. G. Rottman of LASP/University of Colorado provided the SME 
+Lyman-alpha data. G. Fruth of the University of California at Berkeley 
+digitized the published data of the OSO 1, 3, 4, 6 and the AEROS A data. The 
+NSSDC provided the AE-E and August 1979 AFGL rocket datasets. T. Woods 
+provided the 1988 and 1989 LASP sounding rockets' data. This model is 
+available in digital form, including all coefficients and proxy datasets, 
+from the NSSDC and WDC A.
+
+				REFERENCES
+
+[1] SCHMIDTKE, G., Modelling of the solar extreme ultraviolet irradiance for 
+aeronomic applications,  in Handbuch der Physik XLIX/7, Geophysics III, Part 
+VII, ed. S. Flugge, Springer-Verlag, Berlin, 1-55, (1984).
+
+[2] TIMOTHY, J.G., The solar spectrum between 300 and 1200 A, in The Solar 
+Output and its Variation, ed. O.R. White, Colorado Associated University 
+Press, Boulder, 133-150, (1977).
+
+[3] SCHMIDTKE, G., Solar irradiance below 120 nm and its variations, Solar 
+Phys., 74, 251-263, (1981).
+
+[4] LEAN, J.L., Solar ultraviolet irradiance variations: A review, J. Geophys. 
+Res., J. Geophys. Res., 92, 839-868, (1987).
+
+[5] CARLSON, R.W., H.S. OGAWA, E. PHILLIPS, and D.L. JUDGE, Absolute 
+measurements of the extreme UV solar flux, Appl. Opt., 23, 2327-2332, (1984).
+
+[6] OGAWA, H.S. and D.L. JUDGE, Absolute solar flux measurement shortward of 
+575 A, J. Geophys. Res., 91, 7089-7092, (1986).
+
+[7] OGAWA, H.S., L.R. CANFIELD, D. McMULLIN, and D.L. JUDGE, Sounding rocket 
+measurement of the absolute solar EUV flux utilizing a silicon photodiode, 
+J. Geophys. Res., 95, 4291-4295, (1990). 
+
+[8] WOODS, T.N. and G.J. ROTTMAN, Solar EUV irradiance derived from a sounding 
+rocket experiment on November 10, 1988, J. Geophys. Res., 95, 6227-6236, (1990).
+
+[9] FENG, W., H.S. OGAWA, and D.L. JUDGE, The absolute solar soft x-ray flux 
+in the 20--100 A region, J. Geophys. Res., 94, 9125-9130, (1989). 
+
+[10] SAHA, M.N., On the action of ultra-violet sunlight upon the upper 
+atmosphere, Proc. Roy. Soc. London, A, 160, 155-173, (1937).
+
+[11] HINTEREGGER, H.E., L.A. HALL, and G. SCHMIDTKE, Solar XUV radiation and 
+neutral particle distribution in July 1963 thermosphere, Space Res. V, 
+1175-1190, (1965). 
+
+[12] DONNELLY, R.F. and J.H. POPE, The 1-3000 A solar flux for a moderate 
+level of solar activity for use in modeling the ionosphere and upper 
+atmosphere, NOAA Technical Report ERL 276-SEL 25, Boulder, (1973). 
+
+[13] HINTEREGGER, H.E., EUV fluxes in the solar spectrum below 2000 A, 
+J. Atmos. Terr. Phys., 38, 791-806, (1976).
+
+[14] HEROUX, L. and H.E. HINTEREGGER, Aeronomical reference spectrum for 
+solar UV below 2000 A, J. Geophys. Res., 83, 5305-5308, (1978).
+
+[15] ROBLE, R.G. and G. SCHMIDTKE, Calculated ionospheric variations due to 
+changes in the solar EUV flux measured by the AEROS spacecraft, J. Atmos. 
+Terr. Phys., 41, 153-160, (1979).
+
+[16] HINTEREGGER, H.E., K. FUKUI, and B.R. GILSON, Observational, reference and 
+model data on solar EUV, from measurements on AE-E, Geophys. Res. Lett., 8, 
+1147-1150, (1981).
+
+[17] TOBISKA, W.K., A Solar Extreme Ultraviolet Flux Model, Ph.D. Thesis, 
+Department of Aerospace Engineering, University of Colorado, Boulder, (1988).
+
+[18] TOBISKA, W.K. and C.A. BARTH, A solar EUV flux model, J. Geophys. Res., 
+95, 8243-8251, (1990).
+
+[19] TOBISKA, W.K., SERF2: A solar extreme ultraviolet flux model, Earth and 
+Planetary Atmospheres Group, Space Sciences Laboratory, University of 
+California, Berkeley, Contribution 9, (1990). 
+
+[20] LEAN, J., A comparison of models of the Sun's extreme ultraviolet 
+irradiance variations, J. Geophys. Res., 95, 11933-11944, (1990). 
+
+[21] RICHARDS, P.G. and D.G. TORR, An investigation of the consistency of the 
+ionospheric measurements of the photoelectron flux and solar EUV flux, J. 
+Geophys. Res., 89, 5625-5635, (1984).
+
+[22] LINK, R., G.R. GLADSTONE, S. CHAKRABARTI, and J.C. McCONNELL, A 
+reanalysis of rocket measurements of the ultraviolet dayglow, J. Geophys. Res., 
+93, 14631-14648, (1988).
+
+[23] WINNINGHAM, J.D., D.T. DECKER, J.U. KOZYRA, J.R. JASPERSE, and A.F. 
+NAGY, Energetic (>60 eV) atmospheric photoelectrons, J. Geophys. Res., 94, 
+15335-15348, (1989).
+
+[24] TOBISKA, W.K., Modeled solar EUV flux during Equinox Transition Study: 
+September 17-24, 1984, J. Geophys. Res., 94, 17017-17020, (1989).
+
+[25] VAN TASSEL, R.A., W.J. McMAHON, and L. HEROUX, Rocket data of solar EUV 
+flux, thermospheric electron flux, and N2 second-positive airglow emission, 
+ Environ. Res. Pap., 737, AFGL-TR-81-011, Air Force Geophys. Lab., Hanscom Air 
+Force Base, Mass., (1981). 
+
+[26] BARTH, C.A., W.K. TOBISKA, G.J. ROTTMAN, and O.R. WHITE, Comparison of 
+10.7 cm radio flux with SME solar Lyman alpha flux, Geophys. Res. Lett., 17, 
+571-574, (1990). 
+
+[27] TIMOTHY, A.F. and J.G. TIMOTHY, Long-term variations in the solar helium 
+II - Lyman alpha line, J. Geophys. Res., 75, 6950-6958, (1970).
+
+[28] WOODGATE, B.E., D.E. KNIGHT, R. URIBE, P. SHEATHER, J. BOWLES, and R. 
+NETTLESHIP, Extreme ultraviolet line intensities from the Sun, Proc. Roy. 
+Soc. London, A, 332, 291-309, (1973).
+
+[29] HARVEY, J., Helium 10830 A irradiance: 1975-1983, in Solar Irradiance 
+Variations on Active Region Time Scales, eds. B. LaBonte, G. Chapman, H. 
+Hudson, R. Wilson, NASA CP-2310, 197-211, (1984). 
+
+[30] BEVINGTON, P.R., Data reduction and error analysis for the physical 
+sciences, McGraw-Hill, New York, (1969).
+
+[31] TORR, M.R., D.G. TORR, R.A. ONG, and H.E. HINTEREGGER, Ionization 
+frequencies for major thermospheric constituents as a function of solar cycle 
+21, Geophys. Res. Lett., 6, 771-774, (1979).
+
+[32] TORR, M.R. and D.G. TORR, Ionization frequencies for solar cycle 21: 
+revised, J. Geophys. Res., 90, 6675-6678, (1985).
+
+[33] BARTH, C.A., W.K. TOBISKA, D.E. SISKIND, and D.D. CLEARY, 
+Solar-terrestrial coupling: low-latitude thermospheric nitric oxide, Geophys. 
+Res. Lett., 15, 92-94, (1988).
+
+[34] SISKIND, D.E., C.A. BARTH, and D.D. CLEARY, The possible effect of solar 
+soft X rays on thermospheric nitric oxide, J. Geophys. Res., 95, 4311-4317, 
+(1990).
+
+[35] HEATH, D.F. and B.M. SCHLESINGER, The Mg 280 nm doublet as a monitor 
+of changes in Solar ultraviolet irradiance, J. Geophys. Res., 91, 8672-8682, 
+(1986).
+
+[36] WHITE, O.R., G.J. ROTTMAN, and W.C. LIVINGSTON, Estimation of the solar 
+Lyman alpha flux from ground based measurements of the Ca II K line, Geophys. 
+Res. Lett., 17, 575-578, (1990).
+
+[37] TOBISKA, W.K. and S.D. BOUWER, Intermediate-term variations of 
+chromospheric and coronal solar flux during high solar cycle 21 activity, 
+Geophys. Res. Lett., 16, 779-782, (1989). 
+
+[38] COVINGTON, A.E., Solar noise observations on 10.7 centimeters, Proc. of 
+the I.R.E., 36, 454-457, (1948).
+
+[39] ROBLE, R.G., Solar cycle variation of the global mean structure of the 
+thermosphere, in Solar Radiative Output Variation, NCAR, Boulder, Proceedings 
+of a Workshop November 9-11, 1-24, (1987).
+
+[40] NEUPERT, W.M., W.E. BEHRING, and J.C. LINDSAY, The solar spectrum from 
+50 A to 400 A, Space Res. IV, 719-729, (1964).
+
+[41] CHAPMAN R.D. and W.M. NEUPERT, Slowly varying component of extreme 
+ultraviolet solar radiation and its relation to solar radio radiation, J. 
+Geophys. Res., 79, 4138-4148, (1974).
+
+[42] SCHMIDTKE, G., K. RAWER, H. BOTZEK, D. NORBERT, and K. HOLZER, Solar EUV 
+photon fluxes measured aboard Aeros A, J. Geophys. Res., 82, 2423-2427, (1977).
+
+[43] SCHMIDTKE, G., EUV indices for solar-terrestrial relations, Geophys. Res. 
+Lett., 3, 573-576, (1976).
