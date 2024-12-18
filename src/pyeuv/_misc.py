@@ -5,7 +5,7 @@ from importlib_resources import files
 
 @functools.cache
 def _read_coeffs(file):
-    return xr.open_dataset(files('pyeuv91._coeffs').joinpath(file))
+    return xr.open_dataset(files('pyeuv._coeffs').joinpath(file))
 
 
 def get_euv91_dataset():

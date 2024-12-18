@@ -1,6 +1,6 @@
 import numpy as np
 import xarray as xr
-import pyeuv91._misc as _m
+import pyeuv._misc as _m
 
 
 class Euv91:
