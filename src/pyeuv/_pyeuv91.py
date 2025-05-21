@@ -8,40 +8,40 @@ class Euv91:
     EUV91 model class
     '''
     def __init__(self):
-        self.bands_dataset, self.lines_dataset, self.full_dataset = _m.get_euv91_coeffs()
+        self._bands_dataset, self._lines_dataset, self._full_dataset = _m.get_euv91_coeffs()
 
-        self.full_coeffs = np.vstack([self.full_dataset['a0'],
-                                      self.full_dataset['a1'],
-                                      self.full_dataset['a2'],
-                                      self.full_dataset['a3'],
-                                      self.full_dataset['a4'],
-                                      self.full_dataset['a5'],
-                                      self.full_dataset['a6'],
-                                      self.full_dataset['a7'],
-                                      self.full_dataset['a8'],
-                                      self.full_dataset['a9']]).transpose()
+        self._full_coeffs = np.vstack([self._full_dataset['a0'],
+                                       self._full_dataset['a1'],
+                                       self._full_dataset['a2'],
+                                       self._full_dataset['a3'],
+                                       self._full_dataset['a4'],
+                                       self._full_dataset['a5'],
+                                       self._full_dataset['a6'],
+                                       self._full_dataset['a7'],
+                                       self._full_dataset['a8'],
+                                       self._full_dataset['a9']]).transpose()
 
-        self.bands_coeffs = np.vstack([self.bands_dataset['a0'],
-                                 self.bands_dataset['a1'],
-                                 self.bands_dataset['a2'],
-                                 self.bands_dataset['a3'],
-                                 self.bands_dataset['a4'],
-                                 self.bands_dataset['a5'],
-                                 self.bands_dataset['a6'],
-                                 self.bands_dataset['a7'],
-                                 self.bands_dataset['a8'],
-                                 self.bands_dataset['a9']]).transpose()
+        self._bands_coeffs = np.vstack([self._bands_dataset['a0'],
+                                        self._bands_dataset['a1'],
+                                        self._bands_dataset['a2'],
+                                        self._bands_dataset['a3'],
+                                        self._bands_dataset['a4'],
+                                        self._bands_dataset['a5'],
+                                        self._bands_dataset['a6'],
+                                        self._bands_dataset['a7'],
+                                        self._bands_dataset['a8'],
+                                        self._bands_dataset['a9']]).transpose()
 
-        self.lines_coeffs = np.vstack([self.lines_dataset['a0'],
-                                 self.lines_dataset['a1'],
-                                 self.lines_dataset['a2'],
-                                 self.lines_dataset['a3'],
-                                 self.lines_dataset['a4'],
-                                 self.lines_dataset['a5'],
-                                 self.lines_dataset['a6'],
-                                 self.lines_dataset['a7'],
-                                 self.lines_dataset['a8'],
-                                 self.lines_dataset['a9']]).transpose()
+        self._lines_coeffs = np.vstack([self._lines_dataset['a0'],
+                                        self._lines_dataset['a1'],
+                                        self._lines_dataset['a2'],
+                                        self._lines_dataset['a3'],
+                                        self._lines_dataset['a4'],
+                                        self._lines_dataset['a5'],
+                                        self._lines_dataset['a6'],
+                                        self._lines_dataset['a7'],
+                                        self._lines_dataset['a8'],
+                                        self._lines_dataset['a9']]).transpose()
 
     def _get_f(self, *proxies):
         l = proxies[0].size
@@ -68,7 +68,7 @@ class Euv91:
                             f'f107avg was {type(proxies[3]).__name__}')
         return True
 
-    def prepare_data(self, lya, hei, f107, f107avg):
+    def _prepare_data(self, lya, hei, f107, f107avg):
         if not (isinstance(lya, (float, int, list, np.ndarray, type(None))) and
                 isinstance(hei, (float, int, list, np.ndarray, type(None))) and
                 isinstance(f107, (float, int, list, np.ndarray)) and
@@ -96,82 +96,73 @@ class Euv91:
 
         return lya, hei, f107, f107avg
 
-    def get_spectral_full(self, *, lya, hei, f107, f107avg):
-
-        lya, hei, f107, f107avg = self. prepare_data(lya, hei, f107, f107avg)
-
-        f = self._get_f(lya, hei, f107, f107avg)
-        res = np.dot(self.full_coeffs, f.T)
-        res_ener = res * 12400. * 1.602192e-12 / (self.full_dataset['center'].to_numpy().reshape(39, 1))/10
-        return res, res_ener
-
     def get_spectral_bands(self, *, lya, hei, f107, f107avg):
 
-        lya, hei, f107, f107avg = self. prepare_data(lya, hei, f107, f107avg)
+        lya, hei, f107, f107avg = self. _prepare_data(lya, hei, f107, f107avg)
 
         f = self._get_f(lya, hei, f107, f107avg)
-        pflux = np.dot(self.bands_coeffs, f.T)
-        eflux = pflux * 12400. * 1.602192e-12 / (self.bands_dataset['center'].to_numpy().reshape(23, 1))/10
+        pflux = np.dot(self._bands_coeffs, f.T)
+        eflux = pflux * 12400. * 1.602192e-12 / (self._bands_dataset['center'].to_numpy().reshape(23, 1)) / 10
 
         spectra = np.zeros((eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[0]))
 
         for i in range(eflux.shape[1]):
             spectra[i, i, i, i, :] = eflux[:, i]
 
-        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F10.7', 'F10.7AVG', 'band_center'), spectra),
-                                     'lband': ('band_number', self.bands_dataset['lband'].values),
-                                     'uband': ('band_number', self.bands_dataset['uband'].values)},
+        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F107', 'F107AVG', 'band_center'), spectra),
+                                     'lband': ('band_number', self._bands_dataset['lband'].values),
+                                     'uband': ('band_number', self._bands_dataset['uband'].values)},
                           coords={'Lya': lya,
                                   'HeI': hei,
-                                  'F10.7': f107,
-                                  'F10.7AVG':  f107avg,
-                                  'band_center': self.bands_dataset['center'].values,
+                                  'F107': f107,
+                                  'F107AVG':  f107avg,
+                                  'band_center': self._bands_dataset['center'].values,
                                   'band_number': np.arange(23)})
 
     def get_spectral_lines(self, *, lya, hei, f107, f107avg):
 
-        lya, hei, f107, f107avg = self.prepare_data(lya, hei, f107, f107avg)
+        lya, hei, f107, f107avg = self._prepare_data(lya, hei, f107, f107avg)
 
         f = self._get_f(lya, hei, f107, f107avg)
-        pflux = np.dot(self.lines_coeffs, f.T)
-        eflux = pflux * 12400. * 1.602192e-12 / (self.lines_dataset['lambda'].to_numpy().reshape(16, 1))/10
+        pflux = np.dot(self._lines_coeffs, f.T)
+        eflux = pflux * 12400. * 1.602192e-12 / (self._lines_dataset['lambda'].to_numpy().reshape(16, 1)) / 10
 
         spectra = np.zeros((eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[0]))
 
         for i in range(eflux.shape[1]):
             spectra[i, i, i, i, :] = eflux[:, i]
 
-        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F10.7', 'F10.7AVG', 'band_center'), spectra),
-                       'wavelength': ('line_number', self.lines_dataset['lambda'].values)},
-            coords={'Lya': lya,
-                    'HeI': hei,
-                    'F10.7': f107,
-                    'F10.7AVG': f107avg,
-                    'line_wavelength': self.lines_dataset['lambda'].values,
-                    'line_number': np.arange(16)})
-
-    def get_spectra(self, *, lya, hei, f107, f107avg):
-        return self.get_spectral_bands(lya=lya, hei=hei, f107=f107, f107avg=f107avg), self.get_spectral_lines(f107=f107, lya=lya)
-
-
-    def predict(self, *, lya, hei, f107, f107avg):
-        lya, hei, f107, f107avg = self.prepare_data(lya, hei, f107, f107avg)
-
-        f = self._get_f(lya, hei, f107, f107avg)
-        pflux = np.dot(self.full_coeffs, f.T)
-        eflux = pflux * 12400. * 1.602192e-12 / (self.full_dataset['center'].to_numpy().reshape(39, 1)) / 10
-
-        spectra = np.zeros((eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[0]))
-
-        for i in range(eflux.shape[1]):
-            spectra[i, i, i, i, :] = eflux[:, i]
-
-        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F10.7', 'F10.7AVG', 'band_center'), spectra),
-                                     'lband': ('band_number', self.full_dataset['lband'].values),
-                                     'uband': ('band_number', self.full_dataset['uband'].values)},
+        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F107', 'F107AVG', 'band_center'), spectra),
+                                     'wavelength': ('line_number', self._lines_dataset['lambda'].values)},
                           coords={'Lya': lya,
                                   'HeI': hei,
-                                  'F10.7': f107,
-                                  'F10.7AVG': f107avg,
-                                  'band_center': self.full_dataset['center'].values,
+                                  'F107': f107,
+                                  'F107AVG': f107avg,
+                                  'line_wavelength': self._lines_dataset['lambda'].values,
+                                  'line_number': np.arange(16)})
+
+    def get_spectra(self, *, lya, hei, f107, f107avg):
+        return (self.get_spectral_bands(lya=lya, hei=hei, f107=f107, f107avg=f107avg),
+                self.get_spectral_lines(lya=lya, hei=hei, f107=f107, f107avg=f107avg))
+
+    def predict(self, *, lya, hei, f107, f107avg):
+        lya, hei, f107, f107avg = self._prepare_data(lya, hei, f107, f107avg)
+
+        f = self._get_f(lya, hei, f107, f107avg)
+        pflux = np.dot(self._full_coeffs, f.T)
+        eflux = pflux * 12400. * 1.602192e-12 / (self._full_dataset['center'].to_numpy().reshape(39, 1)) / 10
+
+        spectra = np.zeros((eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[1], eflux.shape[0]))
+
+        for i in range(eflux.shape[1]):
+            spectra[i, i, i, i, :] = eflux[:, i]
+
+        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F107', 'F107AVG', 'band_center'), spectra),
+                                     'lband': ('band_number', self._full_dataset['lband'].values),
+                                     'uband': ('band_number', self._full_dataset['uband'].values)},
+                          coords={'Lya': lya,
+                                  'HeI': hei,
+                                  'F107': f107,
+                                  'F107AVG': f107avg,
+                                  'band_center': self._full_dataset['center'].values,
                                   'band_number': np.arange(39)})
