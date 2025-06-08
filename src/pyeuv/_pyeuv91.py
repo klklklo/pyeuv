@@ -69,17 +69,6 @@ class Euv91:
         return True
 
     def _prepare_data(self, lya, hei, f107, f107avg):
-        if not (isinstance(lya, (float, int, list, np.ndarray, type(None))) and
-                isinstance(hei, (float, int, list, np.ndarray, type(None))) and
-                isinstance(f107, (float, int, list, np.ndarray)) and
-                isinstance(f107avg, (float, int, list, np.ndarray))):
-
-            raise TypeError(f'Only float, int, list and np.ndarray. '
-                            f'lya was {type(lya).__name__}, '
-                            f'hei was {type(hei).__name__}, '
-                            f'f107 was {type(f107).__name__}, '
-                            f'f107avg was {type(f107avg).__name__}')
-
         lya = np.array([lya]) if isinstance(lya, (type(None), int, float)) else np.array(lya)
         hei = np.array([hei]) if isinstance(hei, (type(None), int, float)) else np.array(hei)
         f107 = np.array([f107]) if isinstance(f107, (int, float)) else np.array(f107)
@@ -97,8 +86,8 @@ class Euv91:
         return lya, hei, f107, f107avg
 
     def get_spectral_bands(self, *, lya, hei, f107, f107avg):
-
-        lya, hei, f107, f107avg = self. _prepare_data(lya, hei, f107, f107avg)
+        if self._check_types(lya, hei, f107, f107avg):
+            lya, hei, f107, f107avg = self. _prepare_data(lya, hei, f107, f107avg)
 
         f = self._get_f(lya, hei, f107, f107avg)
         pflux = np.dot(self._bands_coeffs, f.T)
@@ -117,11 +106,20 @@ class Euv91:
                                   'F107': f107,
                                   'F107AVG':  f107avg,
                                   'band_center': self._bands_dataset['center'].values,
-                                  'band_number': np.arange(23)})
+                                  'band_number': np.arange(23)},
+                          attrs={'Lyman alpha units': 'photons · cm^-2 · s^-1',
+                                 'He I units': 'photons · cm^-2 · s^-1',
+                                 'F10.7 units': '10^-22 · W · m^-2 · Hz^-1',
+                                 'F10.7 81-day average units': '10^-22 · W · m^-2 · Hz^-1',
+                                 'spectra units': 'cm^-2 · s^-1',
+                                 'wavelength units': 'nm',
+                                 'euv_flux_spectra': 'modeled EUV solar irradiance',
+                                 'lband': 'lower boundary of wavelength interval',
+                                 'uband': 'upper boundary of wavelength interval'})
 
     def get_spectral_lines(self, *, lya, hei, f107, f107avg):
-
-        lya, hei, f107, f107avg = self._prepare_data(lya, hei, f107, f107avg)
+        if self._check_types(lya, hei, f107, f107avg):
+            lya, hei, f107, f107avg = self. _prepare_data(lya, hei, f107, f107avg)
 
         f = self._get_f(lya, hei, f107, f107avg)
         pflux = np.dot(self._lines_coeffs, f.T)
@@ -132,21 +130,30 @@ class Euv91:
         for i in range(eflux.shape[1]):
             spectra[i, i, i, i, :] = eflux[:, i]
 
-        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F107', 'F107AVG', 'band_center'), spectra),
+        return xr.Dataset(data_vars={'euv_flux_spectra': (('Lya', 'HeI', 'F107', 'F107AVG', 'line_wavelength'), spectra),
                                      'wavelength': ('line_number', self._lines_dataset['lambda'].values)},
                           coords={'Lya': lya,
                                   'HeI': hei,
                                   'F107': f107,
                                   'F107AVG': f107avg,
                                   'line_wavelength': self._lines_dataset['lambda'].values,
-                                  'line_number': np.arange(16)})
+                                  'line_number': np.arange(16)},
+                          attrs={'Lyman alpha units': 'photons · cm^-2 · s^-1',
+                                 'He I units': 'photons · cm^-2 · s^-1',
+                                 'F10.7 units': '10^-22 · W · m^-2 · Hz^-1',
+                                 'F10.7 81-day average units': '10^-22 · W · m^-2 · Hz^-1',
+                                 'spectra units': 'cm^-2 · s^-1',
+                                 'wavelength units': 'nm',
+                                 'euv_flux_spectra': 'modeled EUV solar irradiance',
+                                 'wavelength': 'the wavelength of a discrete line'})
 
     def get_spectra(self, *, lya, hei, f107, f107avg):
         return (self.get_spectral_bands(lya=lya, hei=hei, f107=f107, f107avg=f107avg),
                 self.get_spectral_lines(lya=lya, hei=hei, f107=f107, f107avg=f107avg))
 
     def predict(self, *, lya, hei, f107, f107avg):
-        lya, hei, f107, f107avg = self._prepare_data(lya, hei, f107, f107avg)
+        if self._check_types(lya, hei, f107, f107avg):
+            lya, hei, f107, f107avg = self._prepare_data(lya, hei, f107, f107avg)
 
         f = self._get_f(lya, hei, f107, f107avg)
         pflux = np.dot(self._full_coeffs, f.T)
@@ -165,4 +172,13 @@ class Euv91:
                                   'F107': f107,
                                   'F107AVG': f107avg,
                                   'band_center': self._full_dataset['center'].values,
-                                  'band_number': np.arange(39)})
+                                  'band_number': np.arange(39)},
+                          attrs={'Lyman alpha units': 'photons · cm^-2 · s^-1',
+                                 'He I units': 'photons · cm^-2 · s^-1',
+                                 'F10.7 units': '10^-22 · W · m^-2 · Hz^-1',
+                                 'F10.7 81-day average units': '10^-22 · W · m^-2 · Hz^-1',
+                                 'spectra units': 'cm^-2 · s^-1',
+                                 'wavelength units': 'nm',
+                                 'euv_flux_spectra': 'modeled EUV solar irradiance',
+                                 'lband': 'lower boundary of wavelength interval',
+                                 'uband': 'upper boundary of wavelength interval'})

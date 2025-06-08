@@ -1,1 +1,1 @@
-from src.pyeuv._pyeuv91 import Euv91
+from pyeuv._pyeuv91 import Euv91

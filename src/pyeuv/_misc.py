@@ -11,7 +11,3 @@ def _read_coeffs(file):
 def get_euv91_coeffs():
     return (_read_coeffs('euv91_bands_dataset.nc').copy(), _read_coeffs('euv91_lines_dataset.nc').copy(),
             _read_coeffs('euv91_full_dataset.nc').copy())
-
-
-def get_euv91_dataset_full():
-    return _read_coeffs('euv91_full_dataset.nc').copy()
